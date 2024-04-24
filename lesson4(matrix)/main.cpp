@@ -98,6 +98,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
         }
 
         // draw scene
+        // glLoadIdentity();
         glClear(GL_COLOR_BUFFER_BIT);
 
         glColor4ub(255, 255, 255, 255);
@@ -119,19 +120,27 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
         // glVertex3f(-0.1, 0.1, -1);
         // glEnd();
 
-        glLineWidth(3);
-        glBegin(GL_TRIANGLE_STRIP);
+        glPushMatrix();
+
+        glScalef(1, 1, 2);
+        glPushMatrix();
+        glRotatef(15, 0, 1, 0);
+        glPopMatrix();
+
+
+        
+        glTranslatef(3, 0, 0);
+
+        glBegin(GL_TRIANGLES);
         glColor4ub(255, 0, 0, 255);
-        glVertex3f(0.1, 0.0, -1);
+        glVertex3f(10, -10, -20);
         glColor4ub(0, 255, 0, 255);
-        glVertex3f(-0.1, 0.0, -1);
+        glVertex3f(-10, -10, -20);
         glColor4ub(0, 0, 255, 255);
-        glVertex3f(-0.1, 0.1, -1);
-        glColor4ub(0, 0, 0, 255);
-        glVertex3f(-0.15, 0.15, -1);
-        glColor4ub(255, 0, 0, 255);
-        glVertex3f(-0.15, 0.2, -1);
+        glVertex3f(-10, 0, -20);
         glEnd();
+
+        glPopMatrix();
 
         // present scene
         SwapBuffers(hdc);
