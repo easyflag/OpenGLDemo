@@ -72,11 +72,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
 
     // init opengl
     glMatrixMode(GL_PROJECTION);
-    gluPerspective(50.0, 800.0/600, 0.1, 1000.0);
+    gluPerspective(50.0, 800.0 / 600, 0.1, 1000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glClearColor(0.1, 0.5, 0.1, 0.1);
+    glClearColor(1, 1, 1, 0.1);
 
     // show window
     ShowWindow(hwnd, SW_SHOW);
@@ -100,16 +100,37 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
 
         glPointSize(10);
 
-        glBegin(GL_POINTS);
-        glVertex3f(0, 0, -1);
-        glVertex3f(0.1, 0.1, -0.5);
+        // glBegin(GL_POINTS);
+        // glVertex3f(0.1, 0.0, -0.5);
         // glVertex3f(-0.1, 0.0, -0.5);
-        // glVertex3f(-0.1, 0.1, -0.5);
-        // glVertex3f(-0.1, -0.1, -0.5);
+        // glEnd();
+
+        // glLineWidth(3);
+        // glBegin(GL_LINE_STRIP);
+        // glColor4ub(255, 0, 0, 255);
+        // glVertex3f(0.1, 0.0, -1);
+        // glColor4ub(0, 255, 0, 255);
+        // glVertex3f(-0.1, 0.0, -1);
+        // glColor4ub(0, 0, 255, 255);
+        // glVertex3f(-0.1, 0.1, -1);
+        // glEnd();
+
+        glLineWidth(3);
+        glBegin(GL_TRIANGLE_STRIP);
+        glColor4ub(255, 0, 0, 255);
+        glVertex3f(0.1, 0.0, -1);
+        glColor4ub(0, 255, 0, 255);
+        glVertex3f(-0.1, 0.0, -1);
+        glColor4ub(0, 0, 255, 255);
+        glVertex3f(-0.1, 0.1, -1);
+        glColor4ub(0, 0, 0, 255);
+        glVertex3f(-0.15, 0.15, -1);
+        glColor4ub(255, 0, 0, 255);
+        glVertex3f(-0.15, 0.2, -1);
         glEnd();
 
         // present scene
-        SwapBuffers(hdc); 
+        SwapBuffers(hdc);
     }
 
     return 0;
