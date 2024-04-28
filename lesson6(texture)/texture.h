@@ -8,9 +8,15 @@ public:
     Texture(const char *filename);
     ~Texture();
 
-private:
-    unsigned char *_load(const char *filename);
+    GLuint texId() { return _texId; }
 
 private:
-    GLuint _textureId;
+    unsigned char *_loadData(const char *filename);
+    void _decodeBmp(const unsigned char *data);
+
+private:
+    GLuint _texId = 0;
+    int _width = 0;
+    int _height = 0;
+    unsigned char *_pixData = nullptr;
 };

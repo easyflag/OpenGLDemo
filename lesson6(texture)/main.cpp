@@ -87,7 +87,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
 
-    // glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
 
     // set light
     glEnable(GL_LIGHTING);
@@ -108,6 +108,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specularMat);
 
+    glEnable(GL_TEXTURE_2D);
     Texture textue("test.bmp");
 
     // handle msg loop
@@ -128,18 +129,23 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,
         glLoadIdentity();
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glBindTexture(GL_TEXTURE_2D, textue.texId());
         glBegin(GL_TRIANGLES);
 
         glNormal3f(0, 1, 0);
-        glVertex3f(10, -10, -40);
-
-        glNormal3f(0, -1, 0);
+        glTexCoord2f(0, 0);
         glVertex3f(-10, -10, -40);
 
         glNormal3f(0, 1, 0);
-        glVertex3f(0, 10, -800);
+        glTexCoord2f(4, 0);
+        glVertex3f(10, -10, -40);
+
+        glNormal3f(0, 1, 0);
+        glTexCoord2f(2, 4);
+        glVertex3f(0, 10, -40);
 
         glEnd();
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         // present scene
         SwapBuffers(hdc);
