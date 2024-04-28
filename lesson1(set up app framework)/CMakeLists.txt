@@ -1,4 +1,3 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(lesson VERSION 0.1.0)
+set(BIN_NAME lesson1)
 
-add_executable(lesson WIN32 main.cpp)
+add_executable(${BIN_NAME} WIN32 main.cpp)
